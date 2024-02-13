@@ -6,33 +6,44 @@ int main() {
     {
         int x,k; cin >> x >> k;
         long long int arr[x];
-        bool flag;
+        int flag=0;
         for (int i = 0; i < x; i++)
         {
             cin >> arr[i];
         }
-        for (int i = 0; i < x-1; i++)
+        if (x == 1)
         {
-            if (x==1)
-            {
-                flag==true;
-                break;
-            }
-            
-            else if (arr[i]>arr[i+1]&&k<2)
-            {
-                flag=false;
-                break;
-            }
-            
-            else 
-            {
-                flag=true;
-            }
+            flag = 1;
             
         }
-        
-        if (flag)
+        else{
+        for (int i = 0; i < x-1; i++)
+        {
+            
+            
+            if (k>1)
+            {
+                flag=1;
+                break;
+            }
+            
+            else if (arr[i]>arr[i+1])
+            {
+                flag=0;
+                break;
+            }
+            else
+            {
+                flag = 1;
+            }
+            
+            
+            
+            
+            
+        }
+        }
+        if (flag==1)
         {
             cout<<"YES"<<endl;
         }
