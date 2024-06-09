@@ -1,35 +1,49 @@
 #include <bits/stdc++.h>
 using namespace std;
 int main() {
-    int n;
-    cin>>n;
-    int sizeone;
-    cin>>sizeone;
-    vector<int> playerone(sizeone);
-    for (int i = 0; i < sizeone; i++)
+    int n;cin>>n;
+    int k;cin>>k;
+    vector<int> arr(k);
+    for (int i = 0; i < k; i++)
     {
-        int x;
-        cin>>x;
-        playerone[i]=x;
+        int a;cin>>a;
+        arr.push_back(a);
     }
-    int sizetwo;
-    cin >> sizetwo;
-    vector<int> playertwo(sizetwo);
-    for (int i = 0; i < sizetwo; i++)
+    int l;cin>>l;
+    vector<int> brr(l);
+    for (int i = 0; i < l; i++)
     {
-        int x;
-        cin >> x;
-        playertwo[i] = x;
+        int a;cin>>a;
+        brr.push_back(a);
     }
-    vector<int> arr;
-    for (int i = 1; i <=n; i++)
+    vector<int> crr=arr;
+    for (int i = 0; i < brr.size(); i++)
     {
-        arr.push_back(i);
+        int flag=0;
+        for (int j = 0; j < crr.size(); j++)
+        {
+            if(brr[i]==crr[j]){
+                flag++;
+            }
+        }
+        if(flag==0) crr.push_back(brr[i]);
+        
     }
-    for (int i = 0; i < n; i++)
+    int sum=(n*(n+1))/2;
+    for (int i = 0; i < crr.size(); i++)
     {
-        /* code */
+        sum-=crr[i];
     }
+    if (sum==0)
+    {
+        cout<<"I become the guy.";
+    }
+    else{
+        cout<<"Oh, my keyboard!";
+    }
+    
+    
+    
     
 
 return 0;

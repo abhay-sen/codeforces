@@ -13,19 +13,21 @@ int main()
     int start = 0;
     int end = arr.size() - 1;
 
-    while(end>=start)
+    for (int i = 0; i <= end; i++)
     {
         if (arr[start] < 0)
         {
             start++;
         }
-        else if (arr[end] >= 0)
+        else if (arr[end] > 0)
         {
             end--;
         }
         else
         {
             swap(arr[end], arr[start]);
+            start++;
+            end--;
         }
     }
 
