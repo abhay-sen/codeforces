@@ -104,40 +104,19 @@ vector<ll> getBin(ll a){
     for(ll i=0;i<64;i++) ans[i]=((a>>i)&1LL);
     return ans;
 }
-
 void solve()
 {
-    string s, t;
-    cin >> s >> t;
     // Your solution code goes here
-    vector<int> freq(26, 0); // Frequency array for letters A-Z
-
-    // Count occurrences of each character in t
-    for (char ch : t)
+    inll(a);
+    inll(b);
+    inll(c);
+    if (((2 * b - c) / a > 0 && (2 * b - c) % a == 0) || ((c + a) / (2 * b) > 0 && (c + a) % (2 * b) == 0) || ((2 * b - a) / c > 0 && (2 * b - a) % c == 0))
     {
-        freq[ch - 'A']++;
+        py;
     }
-
-    string ans;
-
-    // Traverse s from right to left
-    for (int i = s.length() - 1; i >= 0; i--)
-    {
-        int x = s[i] - 'A';
-        if (freq[x] > 0)
-        {
-            ans.push_back(s[i]);
-            freq[x]--;
-        }
+    else{
+        pn;
     }
-
-    // Reverse ans and compare with t
-    reverse(ans.begin(), ans.end());
-
-    if (ans == t)
-        cout << "YES" << endl;
-    else
-        cout << "NO" << endl;
 }
 
 int32_t main()

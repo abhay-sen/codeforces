@@ -104,40 +104,40 @@ vector<ll> getBin(ll a){
     for(ll i=0;i<64;i++) ans[i]=((a>>i)&1LL);
     return ans;
 }
-
 void solve()
 {
-    string s, t;
-    cin >> s >> t;
     // Your solution code goes here
-    vector<int> freq(26, 0); // Frequency array for letters A-Z
+    inll(x);
+    inll(n);
+    ll extraSum=0;
 
-    // Count occurrences of each character in t
-    for (char ch : t)
+    if (n % 4 == 0)
     {
-        freq[ch - 'A']++;
+        ll a = n / 4;
+        extraSum = (((a * (4 + (a - 1) * 4)) / 2) + ((a * (6 + (a - 1) * 4)) / 2) - ((a * (8 + (a - 1) * 4)) / 2) - (((a - 1) * (10 + (a - 2) * 4)) / 2));
+    }
+    else if (n % 4 == 1)
+    {
+        ll a = n / 4;
+        extraSum = (((a * (4 + (a - 1) * 4)) / 2) + ((a * (6 + (a - 1) * 4)) / 2) - ((a * (8 + (a - 1) * 4)) / 2) - ((a * (10 + (a - 1) * 4)) / 2));
+    }
+    else if (n % 4 == 2)
+    {
+        ll a = n / 4;
+        extraSum = ((((a + 1) * (4 + (a) * 4)) / 2) + ((a * (6 + (a - 1) * 4)) / 2) - ((a * (8 + (a - 1) * 4)) / 2) - ((a * (10 + (a - 1) * 4)) / 2));
+    }
+    else if (n % 4 == 3)
+    {
+        ll a = n / 4;
+        extraSum = ((((a + 1) * (4 + (a) * 4)) / 2) + (((a + 1) * (6 + (a) * 4)) / 2) - ((a * (8 + (a - 1) * 4)) / 2) - (((a ) * (10 + (a - 1) * 4)) / 2));
     }
 
-    string ans;
-
-    // Traverse s from right to left
-    for (int i = s.length() - 1; i >= 0; i--)
-    {
-        int x = s[i] - 'A';
-        if (freq[x] > 0)
-        {
-            ans.push_back(s[i]);
-            freq[x]--;
-        }
+    // out(extraSum);
+    if(x%2==0){
+        out(x-(ll)1+extraSum);
+    }else{
+        out(x+(ll)1-extraSum);
     }
-
-    // Reverse ans and compare with t
-    reverse(ans.begin(), ans.end());
-
-    if (ans == t)
-        cout << "YES" << endl;
-    else
-        cout << "NO" << endl;
 }
 
 int32_t main()
