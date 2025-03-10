@@ -104,21 +104,22 @@ vector<ll> getBin(ll a){
     for(ll i=0;i<64;i++) ans[i]=((a>>i)&1LL);
     return ans;
 }
+int countNoOfDigits(ll x){
+    int ans=0;
+    while(x!=0){
+        x=x/10;
+        ans++;
+    }
+    return ans;
+}
 void solve()
 {
     // Your solution code goes here
-    inint(x);
-    inint(k);
-    if(x%k!=0) {
-        out(1);
-        out(x);
-        
-    }
-    else{
-        out(2);
-        cout<<1<<" "<<x-1<<endl;
-        
-    }
+    inll(n);
+    int number=countNoOfDigits(n);
+    ll count=9*(number-1)+(n/(pow(10,number-1)));
+    out(count);
+
 }
 
 int32_t main()

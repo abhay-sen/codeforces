@@ -107,18 +107,51 @@ vector<ll> getBin(ll a){
 void solve()
 {
     // Your solution code goes here
-    inint(x);
-    inint(k);
-    if(x%k!=0) {
-        out(1);
-        out(x);
-        
+    inll(n);
+    vl arr(n);
+    for(auto& it:arr){
+        cin>>it;
     }
-    else{
-        out(2);
-        cout<<1<<" "<<x-1<<endl;
-        
+    
+
+    // Check if the array consists entirely of zeros
+    bool allZeros = true;
+    for (int num : arr)
+    {
+        if (num != 0)
+        {
+            allZeros = false;
+            break;
+        }
     }
+    if (allZeros){
+        out(0);
+        return;
+}
+    // Find the leftmost and rightmost non-zero indices
+    int left = -1, right = -1;
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] != 0)
+        {
+            if (left == -1)
+                left = i; // First non-zero element
+            right = i;    // Update last non-zero element
+        }
+    }
+
+    // Check if all non-zero elements form a contiguous segment
+    for (int i = left; i <= right; i++)
+    {
+        if (arr[i] == 0)
+        {
+            out(2); // Found a zero in the middle of non-zero elements
+            return;
+        }
+    }
+
+    out(1);
+    return; // All non-zero elements are contiguous
 }
 
 int32_t main()

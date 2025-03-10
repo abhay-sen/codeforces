@@ -104,20 +104,33 @@ vector<ll> getBin(ll a){
     for(ll i=0;i<64;i++) ans[i]=((a>>i)&1LL);
     return ans;
 }
+bool comp(ll a,ll b){
+    return a>b;
+}
 void solve()
 {
     // Your solution code goes here
-    inint(x);
-    inint(k);
-    if(x%k!=0) {
-        out(1);
-        out(x);
-        
+    inint(n);
+    vl arr(n);
+    for(auto &it:arr) cin>>it;
+    sort(all(arr),comp);
+    ll first=arr[0];
+    bool allEqual=true;
+    for(auto&it :arr){
+        if(it!=first) allEqual=false;
+    }
+    if(allEqual){
+        pn;
     }
     else{
-        out(2);
-        cout<<1<<" "<<x-1<<endl;
-        
+        if(arr[0]==arr[1]&&arr.size()>=2){
+            swap(arr[1],arr[arr.size()-1]);
+        }
+        py;
+        for(auto&it:arr){
+            cout<<it<<" ";
+        }
+        cout<<endl;
     }
 }
 

@@ -107,17 +107,23 @@ vector<ll> getBin(ll a){
 void solve()
 {
     // Your solution code goes here
-    inint(x);
-    inint(k);
-    if(x%k!=0) {
+    inll(a1);
+    inll(a2);
+    inll(a4);
+    inll(a5);
+    ll a31=a1+a2;
+    ll a32=a4-a2;
+    ll a33= a5-a4;
+    unordered_set<ll> arr;
+    arr.insert(a31);
+    arr.insert(a32);
+    arr.insert(a33);
+    if(arr.size()==3){
         out(1);
-        out(x);
-        
-    }
-    else{
+    }else if(arr.size()==2){
         out(2);
-        cout<<1<<" "<<x-1<<endl;
-        
+    }else{
+        out(3);
     }
 }
 

@@ -107,18 +107,22 @@ vector<ll> getBin(ll a){
 void solve()
 {
     // Your solution code goes here
-    inint(x);
-    inint(k);
-    if(x%k!=0) {
-        out(1);
-        out(x);
-        
+    inll(n);
+    string str;cin>>str;
+    vector<int> arr(n+1);
+    arr[0]=0;
+    for(int i=0;i<n;i++){
+        if(str[i]=='>'){
+            arr[i+1]=arr[i]-1;
+        }else{
+            arr[i+1]=arr[i]+1;
+        }
     }
-    else{
-        out(2);
-        cout<<1<<" "<<x-1<<endl;
-        
+    unordered_set<int> sett;
+    for(auto& it:arr){
+        sett.insert(it);
     }
+    cout<<sett.size()<<endl;
 }
 
 int32_t main()

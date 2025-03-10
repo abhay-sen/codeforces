@@ -107,18 +107,30 @@ vector<ll> getBin(ll a){
 void solve()
 {
     // Your solution code goes here
-    inint(x);
-    inint(k);
-    if(x%k!=0) {
-        out(1);
-        out(x);
-        
+    inll(n);
+    inll(removal);
+    string str;
+    cin >> str;
+    vector<ll> hash(26, 0);
+
+    for (int i = 0; i < n; i++)
+    {
+        hash[str[i] - 'a']++;
+    }
+
+    int countOdd = 0;
+    for (int i = 0; i < 26; i++)
+    {
+        if (hash[i] % 2 != 0)
+            countOdd++;
+    }
+    if(countOdd>removal+1){
+        pn;
     }
     else{
-        out(2);
-        cout<<1<<" "<<x-1<<endl;
-        
+        py;
     }
+    return ;
 }
 
 int32_t main()

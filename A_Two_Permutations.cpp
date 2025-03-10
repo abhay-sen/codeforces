@@ -107,18 +107,30 @@ vector<ll> getBin(ll a){
 void solve()
 {
     // Your solution code goes here
-    inint(x);
-    inint(k);
-    if(x%k!=0) {
-        out(1);
-        out(x);
-        
+    inll(n);
+    inll(a);
+    inll(b);
+    vl arr(n,-1);
+    int index=0;
+    int curr=n;
+    while(a--){
+        arr[index]=curr;
+        index++;
+        curr--;
     }
-    else{
-        out(2);
-        cout<<1<<" "<<x-1<<endl;
-        
+    int ind=n-1;
+    while(b--){
+        if(arr[ind]==-1){
+            arr[ind]=curr;
+            curr--;
+            ind--;
+        }
+        else{
+            pn;
+            return;
+        }
     }
+    py;c
 }
 
 int32_t main()

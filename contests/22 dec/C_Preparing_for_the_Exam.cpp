@@ -107,18 +107,46 @@ vector<ll> getBin(ll a){
 void solve()
 {
     // Your solution code goes here
-    inint(x);
-    inint(k);
-    if(x%k!=0) {
-        out(1);
-        out(x);
-        
+    inll(n);
+    inll(m);
+    inll(k);
+    vl Lists(m),Known(k);
+    for(auto&it: Lists){
+        cin>>it;
+    }
+    for(auto& it:Known){
+        cin>>it;
+    }
+    if(n==k){
+        for(int i=0;i<m;i++){
+            cout<<1;
+        }
+        cout<<endl;
+    }else if(n-k>=2){
+
+        for (int i = 0; i < m; i++)
+        {
+            cout << 0;
+        }
+        cout << endl;
     }
     else{
-        out(2);
-        cout<<1<<" "<<x-1<<endl;
+        ll sum = (n * (n + 1)) / 2;
+        ll KnownSum=0;
+        for(auto& it:Known){
+            KnownSum+=it;
+        }
         
+        rep(i,m){
+            if(KnownSum==sum-Lists[i]){
+                cout<<1;
+            }else{
+                cout<<0;
+            }
+        }
+        cout<<endl;
     }
+
 }
 
 int32_t main()

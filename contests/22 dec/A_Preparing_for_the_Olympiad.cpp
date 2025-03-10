@@ -107,18 +107,24 @@ vector<ll> getBin(ll a){
 void solve()
 {
     // Your solution code goes here
-    inint(x);
-    inint(k);
-    if(x%k!=0) {
-        out(1);
-        out(x);
-        
+    inll(n);
+    vl arr(n);
+    for(auto& it:arr){
+        cin>>it;
     }
-    else{
-        out(2);
-        cout<<1<<" "<<x-1<<endl;
-        
+    vl brr(n);
+    for(auto& it:brr){
+        cin>>it;
     }
+    ll sumA=0,sumB=0;
+    for(int i=0;i<n-1;i++){
+        if(arr[i]>=brr[i+1]){
+            sumA+=arr[i];
+            sumB+=brr[i+1];
+        }
+    }
+    sumA+=arr[n-1];
+    out(sumA-sumB);
 }
 
 int32_t main()

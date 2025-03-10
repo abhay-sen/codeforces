@@ -104,21 +104,12 @@ vector<ll> getBin(ll a){
     for(ll i=0;i<64;i++) ans[i]=((a>>i)&1LL);
     return ans;
 }
+
 void solve()
 {
     // Your solution code goes here
-    inint(x);
-    inint(k);
-    if(x%k!=0) {
-        out(1);
-        out(x);
-        
-    }
-    else{
-        out(2);
-        cout<<1<<" "<<x-1<<endl;
-        
-    }
+    
+    
 }
 
 int32_t main()

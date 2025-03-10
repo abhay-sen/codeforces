@@ -107,17 +107,38 @@ vector<ll> getBin(ll a){
 void solve()
 {
     // Your solution code goes here
-    inint(x);
-    inint(k);
-    if(x%k!=0) {
-        out(1);
-        out(x);
-        
+    inll(x);
+    inll(y);
+    inll(c);
+    inll(d);
+    if(y>d){
+        out(-1);
+    }
+    else if(y==d){
+        if(c>x){
+            out(-1);
+        }
+        else if(c==x){
+            out(0);
+        }
+        else{
+            out(x-c);
+        }
+
     }
     else{
-        out(2);
-        cout<<1<<" "<<x-1<<endl;
-        
+        ll ans=d-y;
+        x+=ans;
+        if(x<c){
+            out(-1);
+        }
+        else if(x==c){
+            out(ans);
+        }
+        else{
+            ans+=x-c;
+            out(ans);
+        }
     }
 }
 

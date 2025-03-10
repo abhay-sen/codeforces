@@ -107,18 +107,22 @@ vector<ll> getBin(ll a){
 void solve()
 {
     // Your solution code goes here
-    inint(x);
-    inint(k);
-    if(x%k!=0) {
-        out(1);
-        out(x);
-        
+    inll(a);
+    inll(b);
+    inll(n);
+    vl arr(n);
+    for (auto &it : arr)
+    {
+        cin >> it;
     }
-    else{
-        out(2);
-        cout<<1<<" "<<x-1<<endl;
-        
+    ll count = 0;
+    for (auto &it : arr)
+    {
+        count += min(a - 1, it);
     }
+    count += b;
+
+    out(count);
 }
 
 int32_t main()

@@ -104,21 +104,32 @@ vector<ll> getBin(ll a){
     for(ll i=0;i<64;i++) ans[i]=((a>>i)&1LL);
     return ans;
 }
+int isEven(ll x){
+    return x&1;
+}
 void solve()
 {
     // Your solution code goes here
-    inint(x);
-    inint(k);
-    if(x%k!=0) {
-        out(1);
-        out(x);
-        
+    inint(n);
+    vl arr(n);
+    for(auto& it:arr){
+        cin>>it;
     }
-    else{
-        out(2);
-        cout<<1<<" "<<x-1<<endl;
-        
+    stack<ll> st;
+    int count=0;
+    for(int i=0;i<n;i++){
+        if((!st.empty())&&isEven(st.top())==isEven(arr[i])){
+            int temp=st.top();
+            st.pop();
+            count++;
+            st.push(temp*arr[i]);
+
+        }
+        else{
+            st.push(arr[i]);
+        }
     }
+    out(count);
 }
 
 int32_t main()

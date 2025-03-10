@@ -107,17 +107,32 @@ vector<ll> getBin(ll a){
 void solve()
 {
     // Your solution code goes here
-    inint(x);
-    inint(k);
-    if(x%k!=0) {
-        out(1);
-        out(x);
-        
+    inll(n);
+    vl arr(n);
+    for(auto& it:arr){
+        cin>>it;
+    }
+    if(n%2==0){
+        ll ans=0;
+        for(auto& it:arr){
+            ans=ans^it;
+        }
+        if(ans==0){
+            out(0);
+            return;
+        }
+        else{
+            out(-1);
+            return;
+        }
     }
     else{
-        out(2);
-        cout<<1<<" "<<x-1<<endl;
-        
+        ll ans=0;
+        for (auto &it : arr)
+        {
+            ans = ans ^ it;
+        }
+        out(ans);
     }
 }
 

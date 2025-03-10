@@ -107,17 +107,40 @@ vector<ll> getBin(ll a){
 void solve()
 {
     // Your solution code goes here
-    inint(x);
-    inint(k);
-    if(x%k!=0) {
-        out(1);
-        out(x);
-        
+    inint(n);
+    vl arr(n);
+    for(auto& it:arr){
+        cin>>it;
+    }
+    int countP=0;
+    int countN=0;
+    for(auto&it :arr){
+        if(it==-1){
+            countN++;
+        }
+        else{
+            countP++;
+        }
+
+    }
+    if(countP>=countN){
+        if(countN%2==0){
+            out(0);
+        }
+        else{
+            out(1);
+        }
     }
     else{
-        out(2);
-        cout<<1<<" "<<x-1<<endl;
-        
+        int output=0;
+        output = (countN - countP) / 2 + (countN - countP)%2;
+        countN-=output;
+        if(countN%2==0){
+            out(output);
+        }
+        else{
+            out(output+1);
+        }
     }
 }
 

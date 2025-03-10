@@ -104,20 +104,52 @@ vector<ll> getBin(ll a){
     for(ll i=0;i<64;i++) ans[i]=((a>>i)&1LL);
     return ans;
 }
+
 void solve()
 {
     // Your solution code goes here
-    inint(x);
-    inint(k);
-    if(x%k!=0) {
-        out(1);
-        out(x);
-        
+    inll(n);
+    inll(q);
+    vl arr(n);
+    vector<vector<ll>> queries(q);
+    ll sum = 0;
+
+    for (auto &it : arr)
+    {
+        cin >> it;
+        sum += it;
     }
-    else{
-        out(2);
-        cout<<1<<" "<<x-1<<endl;
-        
+
+    vl prefix(n);
+    prefix[0] = arr[0];
+    for (int i = 1; i < n; i++)
+    {
+        prefix[i] = prefix[i - 1] + arr[i];
+    }
+
+    for (auto &it : queries)
+    {
+        ll l, r, k;
+        cin >> l >> r >> k;
+        it = {l, r, k};
+    }
+
+    for (auto &it : queries)
+    {
+        ll l = it[0], r = it[1], k = it[2];
+
+        ll subarraySum = prefix[r - 1] - (l > 1 ? prefix[l - 2] : 0);
+
+        ll newSum = sum - subarraySum + (r - l + 1) * k;
+
+        if (newSum % 2 == 1)
+        {
+            py;
+        }
+        else
+        {
+            pn;
+        }
     }
 }
 

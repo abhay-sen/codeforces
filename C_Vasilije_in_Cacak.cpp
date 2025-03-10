@@ -107,17 +107,16 @@ vector<ll> getBin(ll a){
 void solve()
 {
     // Your solution code goes here
-    inint(x);
-    inint(k);
-    if(x%k!=0) {
-        out(1);
-        out(x);
-        
+    inll(n);
+    inll(k);
+    inll(x);
+    ll upperLimit=(((n*(n+1))/2)-(((n-k)*(n-k+1))/2));
+    ll lowerLimit=((k*(k+1))/2);
+    if((x>=lowerLimit)&&(x<=upperLimit)){
+        py;
     }
     else{
-        out(2);
-        cout<<1<<" "<<x-1<<endl;
-        
+        pn;
     }
 }
 

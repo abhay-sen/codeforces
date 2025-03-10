@@ -107,18 +107,23 @@ vector<ll> getBin(ll a){
 void solve()
 {
     // Your solution code goes here
-    inint(x);
-    inint(k);
-    if(x%k!=0) {
-        out(1);
-        out(x);
-        
+    inll(n);
+    inll(a);
+    inll(b);
+    inll(c);
+    ll sumThree=a+b+c;
+    ll count=n/sumThree;
+    ll remaining=n%sumThree;
+    if(remaining<=0){
+        out(count*3);
+    }else if(remaining<=a){
+        out(count*3+1);
+    }else if(remaining<=a+b){
+        out(count*3+2);
+    }else{
+        out(count*3+3);
     }
-    else{
-        out(2);
-        cout<<1<<" "<<x-1<<endl;
-        
-    }
+    
 }
 
 int32_t main()

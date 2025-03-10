@@ -104,21 +104,35 @@ vector<ll> getBin(ll a){
     for(ll i=0;i<64;i++) ans[i]=((a>>i)&1LL);
     return ans;
 }
+int calcFreq(vl arr){
+    int maxi=INT_MIN;
+    int n=arr.size();
+    int freq=0;
+    
+    for(int i=0;i<n;i++){
+        if(arr[i]==arr[i+1]){
+            freq++;
+            maxi=max(maxi,freq);
+        }else{
+            freq=0;
+        }
+    }
+    return maxi;
+}
+
+void Recursive(vl &arr){
+
+}
+
 void solve()
 {
     // Your solution code goes here
-    inint(x);
-    inint(k);
-    if(x%k!=0) {
-        out(1);
-        out(x);
-        
+    inll(n);
+    vl arr(n);
+    for(auto& it:arr){
+        cin>>it;
     }
-    else{
-        out(2);
-        cout<<1<<" "<<x-1<<endl;
-        
-    }
+
 }
 
 int32_t main()

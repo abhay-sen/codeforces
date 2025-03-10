@@ -107,18 +107,26 @@ vector<ll> getBin(ll a){
 void solve()
 {
     // Your solution code goes here
-    inint(x);
-    inint(k);
-    if(x%k!=0) {
-        out(1);
-        out(x);
-        
+    inll(n);
+    vl arr(n);
+    for(auto& it:arr){
+        cin>>it;
     }
-    else{
-        out(2);
-        cout<<1<<" "<<x-1<<endl;
-        
+    unordered_set<ll> differences;
+    for(int i=0;i<n;i++){
+        differences.insert(abs(arr[i]-(i+1)));
     }
+    ll result=arr[0]-(1);
+    for(auto& it:differences){
+        result=gcd(result,it);
+        if(result==1){
+            out(1);
+            return;
+        }
+    }
+    out(result);
+    return;
+
 }
 
 int32_t main()

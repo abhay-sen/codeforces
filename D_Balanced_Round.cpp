@@ -107,18 +107,24 @@ vector<ll> getBin(ll a){
 void solve()
 {
     // Your solution code goes here
-    inint(x);
-    inint(k);
-    if(x%k!=0) {
-        out(1);
-        out(x);
-        
+    inll(n);
+    inll(k);
+    vl arr(n);
+    for(auto& it:arr){
+        cin>>it;
     }
-    else{
-        out(2);
-        cout<<1<<" "<<x-1<<endl;
-        
+    sort(arr.begin(),arr.end());
+    int maxArr=1;
+    int curr=1;
+    for(int i=0;i<n-1;i++){
+        if(arr[i+1]-arr[i]>k){
+            curr=1;
+        }else{
+            curr++;
+        }
+        maxArr=max(maxArr,curr);
     }
+    cout<<n-maxArr<<endl;
 }
 
 int32_t main()

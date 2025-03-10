@@ -107,18 +107,32 @@ vector<ll> getBin(ll a){
 void solve()
 {
     // Your solution code goes here
-    inint(x);
-    inint(k);
-    if(x%k!=0) {
-        out(1);
-        out(x);
-        
+    inll(n);
+    inll(x);
+    inll(y);
+    vl arr(n);
+    for(auto& it:arr){
+        cin>>it;
     }
-    else{
-        out(2);
-        cout<<1<<" "<<x-1<<endl;
-        
+    sort(arr.begin(),arr.end());
+    ll sum=0;
+    for(auto& it:arr){
+        sum+=it;
     }
+    ll count=0;
+    for(ll i=0;i<n;i++){
+        ll target = sum - arr[i];
+        ll a = target - y; 
+        ll b = target - x; 
+
+        
+        auto lower = std::lower_bound(arr.begin() + i + 1, arr.begin() + n, a);
+        auto upper = std::upper_bound(arr.begin() + i + 1, arr.begin() + n, b);
+
+        
+        count += (upper - lower);
+    }
+    cout<<count<<endl;
 }
 
 int32_t main()
