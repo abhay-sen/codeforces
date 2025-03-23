@@ -118,24 +118,30 @@ void solve()
         cin>>it;
     }
     vector<pair<ll,ll>> arr(n);
+    if(arr.size()==1){
+        out(p);
+        return;
+    }
     rep(i,n){
         arr[i]={cost[i],capacity[i]};
     }
     sort(all(arr),[](const auto&a,const auto& b){
         return a.first<b.first;
     });
-    ll totalCost=p;
-    int start=0;
-    int end=n;
-    while(n>0&&start<end){
-        if(n-arr[start].second>=0){
-            n -= arr[start].second;
-            totalCost += arr[start].first*arr[start].second;
-        }else{
-            n=0;
-            totalCost += arr[start].first*n;
+    ll totalCost=n*p;
+    ll totalCount=n;
+    int index=0;
+    while(totalCount>1&&arr[index].first<p){
+        if(totalCount-arr[index].second>1){
+            totalCost -= p * arr[index].second - arr[index].first * arr[index].second;
+            totalCount -= arr[index].second;
         }
-        start++;
+        else{
+            ll count=totalCount-1;
+            totalCost -= p * count - arr[index].first * count;
+            totalCount=1;
+        }
+        index++;
     }
     out(totalCost);
 }

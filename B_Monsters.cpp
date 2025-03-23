@@ -22,6 +22,7 @@ using namespace std;
 #define inint(x) int x; cin>>x;
 #define inll(x) long long int x; cin>>x;
 #define instr(x) string x; cin>>x;
+#define inlarr(v, n)   vector<ll> v(n); for (auto &it : v) cin >> it;
 #define all(x) x.begin(), x.end()
 #define os(x) cout << x << " ";
 #define out(x) cout << x << endl;
@@ -109,46 +110,31 @@ void solve()
     // Your solution code goes here
     inll(n);
     inll(k);
-    vl arr(n);
+    inlarr(arr,n);
     for(auto& it:arr){
-        cin>>it;
-    }
-    ll mini = INT_MAX;
-    ll prod=1;
-        for (auto &it : arr)
-        {
-            if (it % k != 0)
-            {
-                mini = min(mini, (((it / k) + 1) * k) - it);
-            }
-            else
-            {
-                mini = 0;
-                break;
-            }
-        }
-    if(k==4){
-        for(auto& it:arr){
-            prod*=it;
-            
-        }
-        // out("prod "<<prod);
-        if (prod % 4 == 0)
-        {
-            out(0);
-            return;
-        }
-        if(prod%2==0||mini==1){
-            out(1);
-            return;
+        if(it%k==0){
+            it=k;
         }else{
-            out(2);
-            return;
+            it=it%k;
         }
-
     }
+    vl sol;
+    vector<pair<ll,ll>> pr;
+    rep(i,n){
+        pr.pb({arr[i],i});
+    }
+    sort(all(pr),[](pair<ll,ll>& a,pair<ll,ll>& b){
+        if(a.first==b.first) return a.second<b.second;
+        else return a.first>b.first;
+    });
+    for(auto& it:pr){
+        sol.push_back(it.second+1);
+    }
+    for(auto& it:sol){
+        cout<<it<<" ";
+    }
+    cout<<endl;
     
-    out(mini);
 }
 
 int32_t main()
