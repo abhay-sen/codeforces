@@ -105,47 +105,34 @@ vector<ll> getBin(ll a){
     for(ll i=0;i<64;i++) ans[i]=((a>>i)&1LL);
     return ans;
 }
+bool checkCurr(unordered_map<int,int>& mpp){
+    for(auto it:mpp){
+        if(it.second>0){
+            return false;
+        }
+    }
+    return true;
+}
 void solve()
 {
     // Your solution code goes here
     inll(n);
-    inll(k);
-    inll(q);
     inlarr(arr,n);
-    ll start=0;
-    ll count=0;
-    bool flag=true;
+    unordered_map<int,int> mpp;
+    mpp[0]=3;
+    mpp[1]=1;
+    mpp[2]=2;
+    mpp[3]=1;
+    mpp[5]=1;
     rep(i,n){
-        if(arr[i]<=q){
-            flag=false;
-            break;
+        ll it=arr[i];
+        mpp[it]--;
+        if(checkCurr(mpp)){
+            out(i+1);
+            return;
         }
     }
-    if(flag){
-        out(0);
-        return;
-    }
-    rep(i,n){
-        if(arr[i]>q){
-            ll curr=i-start;
-            if(curr>=k){
-                curr=curr-k+1;
-                count+=((curr*(curr+1))/2);
-            }
-            start=i+1;
-        }
-    }
-    if(start!=n-1||start==0){
-        ll curr=n-start;
-        if(curr>=k){
-            curr=curr-k+1;
-            count+=((curr*(curr+1))/2);
-            }
-    }
-    else if(start==n-1&&arr[start]<=q&&k==1){
-        count++;
-    }
-    out(count);
+    out(0);
 }
 
 int32_t main()

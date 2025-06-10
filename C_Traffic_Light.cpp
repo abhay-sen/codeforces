@@ -109,43 +109,39 @@ void solve()
 {
     // Your solution code goes here
     inll(n);
-    inll(k);
-    inll(q);
-    inlarr(arr,n);
-    ll start=0;
-    ll count=0;
-    bool flag=true;
-    rep(i,n){
-        if(arr[i]<=q){
-            flag=false;
-            break;
-        }
-    }
-    if(flag){
+    char curr;
+    cin>>curr;
+    instr(str);
+    if(curr=='g'){
         out(0);
         return;
     }
-    rep(i,n){
-        if(arr[i]>q){
-            ll curr=i-start;
-            if(curr>=k){
-                curr=curr-k+1;
-                count+=((curr*(curr+1))/2);
+    str=str+str;
+    int maxi=INT_MIN;
+    int i=0;
+    int j=0;
+    while(i<n){
+        if(str[i]==curr){
+            if(j>=i&&str[j]=='g'){
+                maxi=max(maxi,j-i);
+            }else{
+                j=i;
+                while (j < 2 * n)
+                {
+                    if (str[j] == 'g')
+                    {
+                        break;
+                    }
+                    j++;
+                    
+                }
+                maxi = max(maxi, j - i);
             }
-            start=i+1;
+            
         }
+        i++;
     }
-    if(start!=n-1||start==0){
-        ll curr=n-start;
-        if(curr>=k){
-            curr=curr-k+1;
-            count+=((curr*(curr+1))/2);
-            }
-    }
-    else if(start==n-1&&arr[start]<=q&&k==1){
-        count++;
-    }
-    out(count);
+    out(maxi);
 }
 
 int32_t main()

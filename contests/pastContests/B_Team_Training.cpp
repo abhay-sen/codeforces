@@ -109,41 +109,27 @@ void solve()
 {
     // Your solution code goes here
     inll(n);
-    inll(k);
-    inll(q);
+    inll(x);
     inlarr(arr,n);
-    ll start=0;
+    sort(all(arr));
+    ll end=n-1;
     ll count=0;
-    bool flag=true;
-    rep(i,n){
-        if(arr[i]<=q){
-            flag=false;
+    int currL=0;
+    while(end>=0&&currL<n){
+        if(end-currL>=0){
+            if ((currL + 1) * arr[end - currL] >= x)
+            {
+                count++;
+                end = end - currL - 1;
+            }
+            else
+            {
+                currL++;
+            }
+        }else{
             break;
         }
-    }
-    if(flag){
-        out(0);
-        return;
-    }
-    rep(i,n){
-        if(arr[i]>q){
-            ll curr=i-start;
-            if(curr>=k){
-                curr=curr-k+1;
-                count+=((curr*(curr+1))/2);
-            }
-            start=i+1;
-        }
-    }
-    if(start!=n-1||start==0){
-        ll curr=n-start;
-        if(curr>=k){
-            curr=curr-k+1;
-            count+=((curr*(curr+1))/2);
-            }
-    }
-    else if(start==n-1&&arr[start]<=q&&k==1){
-        count++;
+        
     }
     out(count);
 }

@@ -105,47 +105,39 @@ vector<ll> getBin(ll a){
     for(ll i=0;i<64;i++) ans[i]=((a>>i)&1LL);
     return ans;
 }
+
+
 void solve()
 {
     // Your solution code goes here
     inll(n);
-    inll(k);
-    inll(q);
-    inlarr(arr,n);
-    ll start=0;
+    instr(str);
     ll count=0;
-    bool flag=true;
-    rep(i,n){
-        if(arr[i]<=q){
-            flag=false;
-            break;
+    ll odds=0;
+    vl arr(26,0);
+    for(auto& it:str){
+        arr[it-'a']++;
+    }
+    for(auto& it:arr){
+        if(it>0) count++;
+    }
+    ll maximum=INT_MIN;
+    ll leftScore=0;
+    ll rightScore=count;
+    vl brr(26,0);
+    for(auto& it:str){
+        if(brr[it-'a']==0){
+            leftScore++;
         }
-    }
-    if(flag){
-        out(0);
-        return;
-    }
-    rep(i,n){
-        if(arr[i]>q){
-            ll curr=i-start;
-            if(curr>=k){
-                curr=curr-k+1;
-                count+=((curr*(curr+1))/2);
-            }
-            start=i+1;
+        brr[it-'a']++;
+        arr[it-'a']--;
+        if(arr[it-'a']<=0)
+        {
+            rightScore--;
         }
+        maximum=max(maximum,leftScore+rightScore);
     }
-    if(start!=n-1||start==0){
-        ll curr=n-start;
-        if(curr>=k){
-            curr=curr-k+1;
-            count+=((curr*(curr+1))/2);
-            }
-    }
-    else if(start==n-1&&arr[start]<=q&&k==1){
-        count++;
-    }
-    out(count);
+    out(maximum);
 }
 
 int32_t main()

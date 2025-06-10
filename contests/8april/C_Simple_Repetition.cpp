@@ -110,42 +110,22 @@ void solve()
     // Your solution code goes here
     inll(n);
     inll(k);
-    inll(q);
-    inlarr(arr,n);
-    ll start=0;
-    ll count=0;
-    bool flag=true;
-    rep(i,n){
-        if(arr[i]<=q){
-            flag=false;
-            break;
-        }
-    }
-    if(flag){
-        out(0);
+    if(n==2&&k==1){
+        py;
         return;
     }
-    rep(i,n){
-        if(arr[i]>q){
-            ll curr=i-start;
-            if(curr>=k){
-                curr=curr-k+1;
-                count+=((curr*(curr+1))/2);
-            }
-            start=i+1;
-        }
+    if(n%2==0||k!=1){
+        pn;
+        return;
     }
-    if(start!=n-1||start==0){
-        ll curr=n-start;
-        if(curr>=k){
-            curr=curr-k+1;
-            count+=((curr*(curr+1))/2);
-            }
+    
+    if(isPrime(n)){
+        py;
+    }else{
+        pn;
     }
-    else if(start==n-1&&arr[start]<=q&&k==1){
-        count++;
-    }
-    out(count);
+
+
 }
 
 int32_t main()

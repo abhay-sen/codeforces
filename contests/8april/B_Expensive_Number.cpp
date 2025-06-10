@@ -108,43 +108,27 @@ vector<ll> getBin(ll a){
 void solve()
 {
     // Your solution code goes here
-    inll(n);
-    inll(k);
-    inll(q);
-    inlarr(arr,n);
-    ll start=0;
-    ll count=0;
-    bool flag=true;
-    rep(i,n){
-        if(arr[i]<=q){
-            flag=false;
-            break;
-        }
-    }
-    if(flag){
+    instr(n);
+    
+    if(n.length()==1){
         out(0);
         return;
     }
-    rep(i,n){
-        if(arr[i]>q){
-            ll curr=i-start;
-            if(curr>=k){
-                curr=curr-k+1;
-                count+=((curr*(curr+1))/2);
-            }
-            start=i+1;
+    int m=n.length();
+    int start=m-1;
+    while(start>=0){
+        if(n[start]!='0'){
+            break;
         }
+        start--;
     }
-    if(start!=n-1||start==0){
-        ll curr=n-start;
-        if(curr>=k){
-            curr=curr-k+1;
-            count+=((curr*(curr+1))/2);
-            }
+    
+
+    int count=m-1-start;
+    for(int i=start-1;i>=0;i--){
+        if(n[i]!='0') count++;
     }
-    else if(start==n-1&&arr[start]<=q&&k==1){
-        count++;
-    }
+    
     out(count);
 }
 

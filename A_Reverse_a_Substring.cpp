@@ -105,48 +105,7 @@ vector<ll> getBin(ll a){
     for(ll i=0;i<64;i++) ans[i]=((a>>i)&1LL);
     return ans;
 }
-void solve()
-{
-    // Your solution code goes here
-    inll(n);
-    inll(k);
-    inll(q);
-    inlarr(arr,n);
-    ll start=0;
-    ll count=0;
-    bool flag=true;
-    rep(i,n){
-        if(arr[i]<=q){
-            flag=false;
-            break;
-        }
-    }
-    if(flag){
-        out(0);
-        return;
-    }
-    rep(i,n){
-        if(arr[i]>q){
-            ll curr=i-start;
-            if(curr>=k){
-                curr=curr-k+1;
-                count+=((curr*(curr+1))/2);
-            }
-            start=i+1;
-        }
-    }
-    if(start!=n-1||start==0){
-        ll curr=n-start;
-        if(curr>=k){
-            curr=curr-k+1;
-            count+=((curr*(curr+1))/2);
-            }
-    }
-    else if(start==n-1&&arr[start]<=q&&k==1){
-        count++;
-    }
-    out(count);
-}
+
 
 int32_t main()
 {
@@ -156,9 +115,14 @@ int32_t main()
     #endif
     int t;
     cin>>t;
-    while(t--)
-    {
-        solve();
+    instr(s);
+    for(int i=1;i<t;i++){
+        if(s[i-1]>s[i]){
+            py;
+            out(i<<" "<<i+1);
+            return 0;
+        }
     }
+    pn;
     return 0;
 }

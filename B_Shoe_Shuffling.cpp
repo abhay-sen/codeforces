@@ -108,44 +108,59 @@ vector<ll> getBin(ll a){
 void solve()
 {
     // Your solution code goes here
-    inll(n);
-    inll(k);
-    inll(q);
+    inint(n);
+
     inlarr(arr,n);
-    ll start=0;
-    ll count=0;
-    bool flag=true;
-    rep(i,n){
-        if(arr[i]<=q){
-            flag=false;
-            break;
-        }
-    }
-    if(flag){
-        out(0);
+    if(n==1){
+        out(-1);
         return;
     }
-    rep(i,n){
-        if(arr[i]>q){
-            ll curr=i-start;
-            if(curr>=k){
-                curr=curr-k+1;
-                count+=((curr*(curr+1))/2);
+    int i=0;
+    int j=0;
+    vl ans(n,0);
+    while(i<n&&j<n){
+        
+        if (j == n - 1&&arr[i] == arr[j])
+        {
+            if(i == j)
+            {
+                out(-1);
+                return;
             }
-            start=i+1;
+            ans[j] = i + 1;
+            while (i < j)
+            {
+                ans[i] = i + 2;
+                i++;
+            }
+            break;
         }
-    }
-    if(start!=n-1||start==0){
-        ll curr=n-start;
-        if(curr>=k){
-            curr=curr-k+1;
-            count+=((curr*(curr+1))/2);
+        
+        if(arr[i]==arr[j]){
+            j++;
+            
+        }
+        else{
+            if(j-i==1){
+                out(-1);
+                return;
+            }else{
+                ans[j-1] = i+1;
+                while (i < j - 1)
+                {
+                    ans[i]=i+2;
+                    i++;
+                }
+                i=j;
             }
+        }
+        
     }
-    else if(start==n-1&&arr[start]<=q&&k==1){
-        count++;
+
+    for(auto&it:ans){
+        cout<<it<<" ";
     }
-    out(count);
+    cout<<endl;
 }
 
 int32_t main()

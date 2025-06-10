@@ -109,43 +109,28 @@ void solve()
 {
     // Your solution code goes here
     inll(n);
-    inll(k);
-    inll(q);
     inlarr(arr,n);
-    ll start=0;
-    ll count=0;
-    bool flag=true;
-    rep(i,n){
-        if(arr[i]<=q){
-            flag=false;
-            break;
+    vl ans(n+1,0);
+    
+    map<ll,ll> mp;
+    for(int i=0;i<n;i++){
+        mp[arr[i]]=i;
+    }
+    int pos=1;
+    int neg=-1;
+    for(auto it=mp.rbegin();it!=mp.rend();it++){
+        if(pos+neg==0){
+            ans[it->second+1]=pos;
+            pos++;
+        }else{
+            ans[it->second+1]=neg;
+            neg--;
         }
     }
-    if(flag){
-        out(0);
-        return;
+    for(auto& it:ans){
+        cout<<it<<" ";
     }
-    rep(i,n){
-        if(arr[i]>q){
-            ll curr=i-start;
-            if(curr>=k){
-                curr=curr-k+1;
-                count+=((curr*(curr+1))/2);
-            }
-            start=i+1;
-        }
-    }
-    if(start!=n-1||start==0){
-        ll curr=n-start;
-        if(curr>=k){
-            curr=curr-k+1;
-            count+=((curr*(curr+1))/2);
-            }
-    }
-    else if(start==n-1&&arr[start]<=q&&k==1){
-        count++;
-    }
-    out(count);
+    cout<<endl;
 }
 
 int32_t main()
