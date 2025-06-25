@@ -111,23 +111,48 @@ void solve()
     inll(n);
     inlarr(arr,n);
     vl ans(n+1,0);
-    
-    map<ll,ll> mp;
-    for(int i=0;i<n;i++){
-        mp[arr[i]]=i;
-    }
-    int pos=1;
-    int neg=-1;
-    for(auto it=mp.rbegin();it!=mp.rend();it++){
-        if(pos+neg==0){
-            ans[it->second+1]=pos;
-            pos++;
-        }else{
-            ans[it->second+1]=neg;
-            neg--;
+    ll posOfZero=n/2;
+    // unordered_map<ll,ll> countMap;
+    // for(auto& it:arr){
+    //     countMap[it]++;
+    // }
+    ll left=posOfZero-1;
+    ll right=posOfZero+1;
+    ll index=0;
+    vl brr=arr;
+    sort(all(brr));
+    reverse(all(brr));
+    while(index<n){
+        if(right<=n){
+            ans[right]=brr[index];
+            right++;
+            index++;
+        }
+        if(left>=0){
+            ans[left]=brr[index];
+            left--;
+            index++;
         }
     }
-    for(auto& it:ans){
+    unordered_map<ll,vl> arrayMap;
+    for(int i=0;i<n;i++){
+        arrayMap[arr[i]].pb(i+1);
+    }
+    arrayMap[0].pb(0); 
+    vl ansI(n+1,0);
+    for(int i=0;i<=n;i++){
+        ll it=ans[i];
+        if(arrayMap.find(it) != arrayMap.end() && !arrayMap[it].empty()){
+            ansI[arrayMap[it].back()]=i;
+            arrayMap[it].pop_back();
+        }
+    }
+    ll Tans=0;
+    for(int i=1;i<=n;i++){
+        Tans+=2*abs(ansI[0]-ansI[i])*arr[i-1];
+    }
+    cout<<Tans<<endl;
+    for(auto& it:ansI){
         cout<<it<<" ";
     }
     cout<<endl;

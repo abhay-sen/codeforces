@@ -22,6 +22,7 @@ using namespace std;
 #define inint(x) int x; cin>>x;
 #define inll(x) long long int x; cin>>x;
 #define instr(x) string x; cin>>x;
+#define inlarr(v, n)   vector<ll> v(n); for (auto &it : v) cin >> it;
 #define all(x) x.begin(), x.end()
 #define os(x) cout << x << " ";
 #define out(x) cout << x << endl;
@@ -107,37 +108,33 @@ vector<ll> getBin(ll a){
 void solve()
 {
     // Your solution code goes here
-    inint(n);
-    vl arr(n);
-    for(auto &it:arr){
-        cin>>it;
+    inll(n);
+    inll(x);
+    inlarr(arr,n);
+    vector<pair<ll,ll>> intervals;
+    for(ll i=0;i<n;i++)
+    {
+        ll l = arr[i] - x;
+        ll r = arr[i] + x;
+        intervals.pb({l,r});
     }
-    vl brr;
-    vl crr;
-    sort(all(arr));
-    int index=n-1;
-    while(index>=0&&arr[index]==arr[n-1]){
-        crr.pb(arr[index]);
-        index--;
+    int count = 0;
+    ll currL= intervals[0].f;
+    ll currR = intervals[0].s;
+    for(int i=1;i<n;i++){
+        if(intervals[i].f<=currR&&intervals[i].f>=currL){
+            currL=intervals[i].f;
+        }
+        if(intervals[i].s<=currR&&intervals[i].s>=currL){
+            currR=intervals[i].s;
+        }
+        if((intervals[i].f>currR&& intervals[i].s>currR||(intervals[i].f<currL&& intervals[i].s<currL))){
+            count++;
+            currL = intervals[i].f;
+            currR = intervals[i].s;
+        }
     }
-    while(index>=0){
-        brr.pb(arr[index]);
-        index--;
-    }
-    if(brr.size()==0){
-        out(-1);
-        return;
-    }
-    out(brr.size()<<" "<<crr.size());
-    for(auto &it:brr){
-        cout<<it<<" ";
-    }
-    cout<<endl;
-    for(auto &it:crr){
-        cout<<it<<" ";
-    }
-    cout<<endl;
-    return;
+    out(count);
 }
 
 int32_t main()

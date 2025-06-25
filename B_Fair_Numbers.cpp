@@ -22,6 +22,7 @@ using namespace std;
 #define inint(x) int x; cin>>x;
 #define inll(x) long long int x; cin>>x;
 #define instr(x) string x; cin>>x;
+#define inlarr(v, n)   vector<ll> v(n); for (auto &it : v) cin >> it;
 #define all(x) x.begin(), x.end()
 #define os(x) cout << x << " ";
 #define out(x) cout << x << endl;
@@ -107,37 +108,39 @@ vector<ll> getBin(ll a){
 void solve()
 {
     // Your solution code goes here
-    inint(n);
-    vl arr(n);
-    for(auto &it:arr){
-        cin>>it;
+    inll(s);
+    
+    ll index=0;
+    while(true){
+        ll curr=s+index;
+        ll temp=curr;
+        bool flag=false;
+        while(curr!=0){
+            ll digit=curr%10;
+            
+            curr /= 10;
+            // out(digit<<" "<<curr);
+            if(digit==0){
+                
+                continue;
+            }
+            else{
+                if(temp%digit!=0){
+                    flag=true;
+                    break;
+                }
+            }
+            
+        }
+        if(!flag){
+            out(s+index);
+            return;
+        }
+        else{
+            index++;
+        }
     }
-    vl brr;
-    vl crr;
-    sort(all(arr));
-    int index=n-1;
-    while(index>=0&&arr[index]==arr[n-1]){
-        crr.pb(arr[index]);
-        index--;
-    }
-    while(index>=0){
-        brr.pb(arr[index]);
-        index--;
-    }
-    if(brr.size()==0){
-        out(-1);
-        return;
-    }
-    out(brr.size()<<" "<<crr.size());
-    for(auto &it:brr){
-        cout<<it<<" ";
-    }
-    cout<<endl;
-    for(auto &it:crr){
-        cout<<it<<" ";
-    }
-    cout<<endl;
-    return;
+
 }
 
 int32_t main()

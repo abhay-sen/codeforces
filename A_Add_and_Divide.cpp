@@ -22,6 +22,7 @@ using namespace std;
 #define inint(x) int x; cin>>x;
 #define inll(x) long long int x; cin>>x;
 #define instr(x) string x; cin>>x;
+#define inlarr(v, n)   vector<ll> v(n); for (auto &it : v) cin >> it;
 #define all(x) x.begin(), x.end()
 #define os(x) cout << x << " ";
 #define out(x) cout << x << endl;
@@ -107,37 +108,30 @@ vector<ll> getBin(ll a){
 void solve()
 {
     // Your solution code goes here
-    inint(n);
-    vl arr(n);
-    for(auto &it:arr){
-        cin>>it;
-    }
-    vl brr;
-    vl crr;
-    sort(all(arr));
-    int index=n-1;
-    while(index>=0&&arr[index]==arr[n-1]){
-        crr.pb(arr[index]);
-        index--;
-    }
-    while(index>=0){
-        brr.pb(arr[index]);
-        index--;
-    }
-    if(brr.size()==0){
-        out(-1);
+    inll(a);
+    inll(b);
+    if(a == 0) {
+        out(0);
         return;
     }
-    out(brr.size()<<" "<<crr.size());
-    for(auto &it:brr){
-        cout<<it<<" ";
+    if(b>a){
+        out(1);
+        return;
     }
-    cout<<endl;
-    for(auto &it:crr){
-        cout<<it<<" ";
+    ll mini=INT_MAX;
+    foreach(i,b,b+30,1){
+        if(i == 0||i==1) continue; // Skip zero as it cannot be a divisor
+        ll curr=a;
+        ll cnt=i-b;
+        while(curr  != 0) {
+            curr /= i;
+            cnt++;
+        }
+        if(cnt!=0){
+            mini=min(mini,cnt);
+        }
     }
-    cout<<endl;
-    return;
+    out(mini);
 }
 
 int32_t main()

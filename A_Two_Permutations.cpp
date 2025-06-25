@@ -113,24 +113,17 @@ void solve()
     vl arr(n,-1);
     int index=0;
     int curr=n;
-    while(a--){
-        arr[index]=curr;
-        index++;
-        curr--;
+    if(n==a&& n==b){
+        py;
+        return;
     }
-    int ind=n-1;
-    while(b--){
-        if(arr[ind]==-1){
-            arr[ind]=curr;
-            curr--;
-            ind--;
-        }
-        else{
-            pn;
-            return;
-        }
+    if(n-(a+b)>1){
+        py;
+        return;
+    }else{
+        pn;
+        return;
     }
-    py;c
 }
 
 int32_t main()

@@ -2,9 +2,11 @@
 using namespace std;
 
 //Speed
+//jai shree ram
 #define fastio() ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
 
 //Macros
+//jai shree ram
 #define IOtext freopen("input.txt","r",stdin); freopen("output.txt","w",stdout);
 #define PI (3.141592653589)
 #define M 1000000007
@@ -22,6 +24,7 @@ using namespace std;
 #define inint(x) int x; cin>>x;
 #define inll(x) long long int x; cin>>x;
 #define instr(x) string x; cin>>x;
+#define inlarr(v, n)   vector<ll> v(n); for (auto &it : v) cin >> it;
 #define all(x) x.begin(), x.end()
 #define os(x) cout << x << " ";
 #define out(x) cout << x << endl;
@@ -37,6 +40,7 @@ using namespace std;
 #define ps(x,y) fixed<<setprecision(y)<<x
 #define endl '\n'
 
+//jai shree ram
 //Typedef
 typedef long long ll;
 typedef unsigned long long ull;
@@ -53,6 +57,7 @@ typedef map<int,int> mii;
 typedef set<int> st;
 typedef priority_queue<ll> pqll;
 
+//jai shree ram
 #ifndef ONLINE_JUDGE
 #define debug(x) cerr<<#x<<" ";_print(x); cerr<<endl;
 #else
@@ -83,7 +88,7 @@ ll binaryToDecimal(string n){string num = n;ll dec_value = 0;int base = 1;int le
 
 //Check
 bool isPrime(ll n){if(n<=1)return false;if(n<=3)return true;if(n%2==0||n%3==0)return false;for(int i=5;i*i<=n;i=i+6)if(n%i==0||n%(i+2)==0)return false;return true;}
-bool isPowerOfTwo(int n){if(n==0)return false;return (ceil(log2(n)) == floor(log2(n)));}
+bool isPowerOfTwo(ll n){return n > 0 && (n & (n - 1)) == 0;}
 bool isPerfectSquare(ll x){if (x >= 0) {ll sr = sqrt(x);return (sr * sr == x);}return false;}
 
 //Constants
@@ -107,37 +112,25 @@ vector<ll> getBin(ll a){
 void solve()
 {
     // Your solution code goes here
-    inint(n);
-    vl arr(n);
-    for(auto &it:arr){
-        cin>>it;
+    inll(n);
+    inll(k);
+    instr(str);
+    int curr=0;
+    int ans=0;
+    rep(i,n){
+        if(str[i]=='B'){
+            curr++;
+        }else{
+            curr=0;
+        }
+        ans=max(ans,curr);
     }
-    vl brr;
-    vl crr;
-    sort(all(arr));
-    int index=n-1;
-    while(index>=0&&arr[index]==arr[n-1]){
-        crr.pb(arr[index]);
-        index--;
-    }
-    while(index>=0){
-        brr.pb(arr[index]);
-        index--;
-    }
-    if(brr.size()==0){
-        out(-1);
-        return;
-    }
-    out(brr.size()<<" "<<crr.size());
-    for(auto &it:brr){
-        cout<<it<<" ";
-    }
-    cout<<endl;
-    for(auto &it:crr){
-        cout<<it<<" ";
-    }
-    cout<<endl;
-    return;
+     if(ans>=k){
+        out(0);
+     }
+     else{
+        out(k-ans);
+     }
 }
 
 int32_t main()

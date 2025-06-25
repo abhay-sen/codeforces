@@ -114,35 +114,14 @@ void solve()
     }
     vl ans;
     bool flag=false;
-    for(int i=0;i<n;i++){
-        for(int j=i+1;j<n;j++){
-            for(int k=j+1;k<n;k++){
-                if(arr[i]<arr[j]&&arr[j]>arr[k]){
-                    ans={i,j,k};
-                    flag=true;
-                    break;
-                }
-                if (flag)
-                {
-                    break;
-                }
-            }
-            if (flag)
-            {
-                break;
-            }
-        }
-        if (flag)
-        {
-            break;
+    for(int i=1;i<n-1;i++){
+        if(arr[i]>arr[i-1] && arr[i]>arr[i+1]){
+            py;
+            out(i<<" "<<i+1<<" "<<i+2);
+            return;
         }
     }
-    if(ans.size()==3){
-        py;
-        cout<<ans[0]+1<<" "<<ans[1]+1<<" "<<ans[2]+1<<endl;
-    }else {
-        pn;
-    }
+    pn;
 }
 
 int32_t main()

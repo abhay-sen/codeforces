@@ -22,6 +22,7 @@ using namespace std;
 #define inint(x) int x; cin>>x;
 #define inll(x) long long int x; cin>>x;
 #define instr(x) string x; cin>>x;
+#define inlarr(v, n)   vector<ll> v(n); for (auto &it : v) cin >> it;
 #define all(x) x.begin(), x.end()
 #define os(x) cout << x << " ";
 #define out(x) cout << x << endl;
@@ -83,7 +84,7 @@ ll binaryToDecimal(string n){string num = n;ll dec_value = 0;int base = 1;int le
 
 //Check
 bool isPrime(ll n){if(n<=1)return false;if(n<=3)return true;if(n%2==0||n%3==0)return false;for(int i=5;i*i<=n;i=i+6)if(n%i==0||n%(i+2)==0)return false;return true;}
-bool isPowerOfTwo(int n){if(n==0)return false;return (ceil(log2(n)) == floor(log2(n)));}
+bool isPowerOfTwo(ll n){return n > 0 && (n & (n - 1)) == 0;}
 bool isPerfectSquare(ll x){if (x >= 0) {ll sr = sqrt(x);return (sr * sr == x);}return false;}
 
 //Constants
@@ -107,37 +108,55 @@ vector<ll> getBin(ll a){
 void solve()
 {
     // Your solution code goes here
-    inint(n);
-    vl arr(n);
-    for(auto &it:arr){
-        cin>>it;
+    inll(a);
+    inll(b);
+    if (a == b)
+    {
+        out(0);
+        return;
     }
-    vl brr;
-    vl crr;
-    sort(all(arr));
-    int index=n-1;
-    while(index>=0&&arr[index]==arr[n-1]){
-        crr.pb(arr[index]);
-        index--;
-    }
-    while(index>=0){
-        brr.pb(arr[index]);
-        index--;
-    }
-    if(brr.size()==0){
+
+    if (a % 2 != 0 && b % 2 != 0)
+    {
         out(-1);
         return;
     }
-    out(brr.size()<<" "<<crr.size());
-    for(auto &it:brr){
-        cout<<it<<" ";
+
+    ll greater = max(a, b);
+    ll smaller = min(a, b);
+    ll divider = greater / smaller;
+    if (greater % smaller != 0)
+    {
+        out(-1);
+        return;
     }
-    cout<<endl;
-    for(auto &it:crr){
-        cout<<it<<" ";
+
+    if (!isPowerOfTwo(divider))
+    {
+        out(-1);
+        return;
     }
-    cout<<endl;
-    return;
+
+    ll ans = 0;
+    while (divider > 1)
+    {
+        if (divider % 8 == 0)
+        {
+            ans++;
+            divider /= 8;
+        }
+        else if (divider % 4 == 0)
+        {
+            ans++;
+            divider /= 4;
+        }
+        else if (divider % 2 == 0)
+        {
+            ans++;
+            divider /= 2;
+        }
+    }
+    out(ans);
 }
 
 int32_t main()

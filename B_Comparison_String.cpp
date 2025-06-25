@@ -109,20 +109,19 @@ void solve()
     // Your solution code goes here
     inll(n);
     string str;cin>>str;
-    vector<int> arr(n+1);
-    arr[0]=0;
-    for(int i=0;i<n;i++){
-        if(str[i]=='>'){
-            arr[i+1]=arr[i]-1;
-        }else{
-            arr[i+1]=arr[i]+1;
+    int curr=1;
+    int ans=1;
+    for(int i=1;i<n;i++){
+        if(str[i]==str[i-1]){
+            curr++;
+        } else {
+            
+            curr=1;
         }
+        ans = max(ans, curr);
     }
-    unordered_set<int> sett;
-    for(auto& it:arr){
-        sett.insert(it);
-    }
-    cout<<sett.size()<<endl;
+    
+    out(ans+1);
 }
 
 int32_t main()
